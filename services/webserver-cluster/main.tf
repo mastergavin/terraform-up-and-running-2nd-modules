@@ -34,17 +34,6 @@ data "template_file" "user_data" {
     }
 }
 
-terraform {
-    backend "s3" {
-        bucket = "gbj-testenv-terraform-up-and-running-state-2nd"
-        key =  "stage/services/webserver-cluster/terraform.tfstate"
-        region = "us-east-2"
-
-        dynamodb_table = "terraform-up-and-running-locks"
-        encrypt = true
-    }
-}
-
 resource "aws_launch_configuration" "example" {
     image_id = "ami-058cc258a01391a67"
     instance_type = var.instance_type
